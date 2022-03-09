@@ -1,20 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-<<<<<<< HEAD
-import 'package:imageclassification/main.dart';
-
-class splash_page extends StatefulWidget {
-  @override
-  _splash_pageState createState() => _splash_pageState();
-}
-
-class _splash_pageState extends State<splash_page> {
-
-  void printLuckyNumber() {
-    var rng = Random();
-    print(rng.nextInt(100));
-  }
-=======
 
 import 'package:imageclassification/main.dart';
 
@@ -25,7 +10,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
->>>>>>> dfd41e4 (update)
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +18,6 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-<<<<<<< HEAD
-              Text("Profile"),
-              Image.asset("assets/applogo.jpeg"),
-              SizedBox(height:25),
-              Text("Welcome to the Diabetes Food Nutrition App!"),
-              Text("Copyright @ Olivia Lee, 2022")
-=======
 
               Expanded(
                 flex: 66,
@@ -63,7 +40,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               )
 
->>>>>>> dfd41e4 (update)
             ],
           ),
         )

@@ -7,13 +7,10 @@ import 'package:imageclassification/classifier_quant.dart';
 import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
-import 'splash_screen.dart';
 
-import 'splash_screen.dart';
+void main() => runApp(MyApp());
 
-void main() => runApp(splash_screen());
-
-class splash_screen extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,11 +19,7 @@ class splash_screen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-<<<<<<< HEAD
-      home: splash_screen(),
-=======
       home: SplashPage(),
->>>>>>> dfd41e4 (update)
     );
   }
 }
@@ -93,13 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
             child: _image == null
                 ? Text('No image selected.')
                 : Container(
-                    constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height / 2),
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                    ),
-                    child: _imageWidget,
-                  ),
+              constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height / 2),
+              decoration: BoxDecoration(
+                border: Border.all(),
+              ),
+              child: _imageWidget,
+            ),
           ),
           SizedBox(
             height: 36,
