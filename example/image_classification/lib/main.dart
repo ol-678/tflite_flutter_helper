@@ -6,18 +6,22 @@ import 'package:imageclassification/classifier.dart';
 import 'package:imageclassification/classifier_quant.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
+import 'splash_screen.dart';
 
-void main() => runApp(MyApp());
+import 'splash_screen.dart';
 
-class MyApp extends StatelessWidget {
+void main() => runApp(splash_screen());
+
+class splash_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Image Classification',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: splash_screen(),
     );
   }
 }
