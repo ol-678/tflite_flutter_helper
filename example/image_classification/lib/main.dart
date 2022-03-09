@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:imageclassification/classifier.dart';
 import 'package:imageclassification/classifier_quant.dart';
+import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 import 'splash_screen.dart';
@@ -21,7 +22,11 @@ class splash_screen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
+<<<<<<< HEAD
       home: splash_screen(),
+=======
+      home: SplashPage(),
+>>>>>>> dfd41e4 (update)
     );
   }
 }

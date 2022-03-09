@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'dart:math';
 import 'package:imageclassification/main.dart';
 import 'dashboard_screen.dart';
@@ -14,6 +15,21 @@ class _splash_pageState extends State<splash_page> {
     var rng = Random();
     print(rng.nextInt(100));
   }
+=======
+import 'package:imageclassification/dashboard_screen.dart';
+import 'dart:math';
+
+import 'package:imageclassification/main.dart';
+
+
+class SplashPage extends StatefulWidget {
+  @override
+  _SplashPageState createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+
+>>>>>>> dfd41e4 (update)
   @override
   void initState() {
     super.initState();
@@ -21,15 +37,23 @@ class _splash_pageState extends State<splash_page> {
         const Duration(seconds: 3),
             () => Navigator.pushReplacement(
           context,
+<<<<<<< HEAD
           MaterialPageRoute(builder: (context) => dashboard_screen()),
         ));
   }
+=======
+          MaterialPageRoute(builder: (context) => DashboardPage()),
+        ));
+  }
+
+>>>>>>> dfd41e4 (update)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+<<<<<<< HEAD
             children:[
 
               Expanded(
@@ -53,6 +77,13 @@ class _splash_pageState extends State<splash_page> {
                   ),
                 ),
 
+=======
+            children: [
+              Image.asset("assets/applogo.png"),
+              SizedBox(height: 25),
+              Text("Welcome to Health App"),
+              Text("Copyright @ Olivia, 2022")
+>>>>>>> dfd41e4 (update)
             ],
           ),
         )
