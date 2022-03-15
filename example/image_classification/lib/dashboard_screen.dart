@@ -11,6 +11,9 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
 
+  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<int> colorCodes = <int>[600, 500, 100];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,23 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Column(
                   children: [
                     Text("Profile"),
-                    Image.asset("assets/applogo.png"),
+                    Container(
+                      height: 150,
+                      width: 150,
+                      margin: EdgeInsets.all(15),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage("https://cdn-icons-png.flaticon.com/512/3011/3011270.png"),
+                      ),
+                    ),
+                    Text(
+                      "Welcome, John!",
+                      style: TextStyle(
+                        fontSize: 20
+                      ),
+                    ),
+                    Text(
+                      "You have been doing great! Keep the good diet!"
+                    )
                   ],
                 ),
               ),
@@ -33,16 +52,59 @@ class _DashboardPageState extends State<DashboardPage> {
                 flex: 66,
                 child: Column(
                   children: [
-                    SizedBox(height: 25),
-                    Text("Welcome to Health App"),
-                    Text("Copyright @ Olivia, 2022")
+                    Text("Recommendations"),
+                    Expanded(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.all(8),
+                          itemCount: entries.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              height: 50,
+                              color: Colors.amber[colorCodes[index]],
+                              child: Center(child: Text('Entry ${entries[index]}')),
+                            );
+                          }
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              Expanded(
+                flex: 66,
+                child: Column(
+                  children: [
+                    Text("Recent"),
+                    Expanded(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.all(8),
+                          itemCount: entries.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              height: 50,
+                              color: Colors.amber[colorCodes[index]],
+                              child: Center(child: Text('Entry ${entries[index]}')),
+                            );
+                          }
+                      ),
+                    )
                   ],
                 ),
               )
 
             ],
           ),
-        )
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyHomePage()),
+          );
+        },
+        tooltip: 'Pick Image',
+        child: Icon(Icons.add_a_photo),
+      ),
     );
   }
 }
