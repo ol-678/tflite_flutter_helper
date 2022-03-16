@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,6 +8,7 @@ import 'package:imageclassification/classifier_quant.dart';
 import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
+import 'package:imageclassification/Picture Screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -113,8 +115,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Pick Image',
+        onPressed: () async {
+          // Obtain a list of the available cameras on the device.
+          final cameras = await availableCameras();
+          // Get a specific camera from the list of available cameras.
+          final firstCamera = cameras.first;
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
+          );
+        },
+        tooltip: 'Take Picture',
         child: Icon(Icons.add_a_photo),
       ),
     );
