@@ -8,7 +8,6 @@ import 'package:imageclassification/classifier_quant.dart';
 import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
-import 'package:imageclassification/Picture Screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,9 +26,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title, this.imgPath}) : super(key: key);
 
   final String? title;
+  final String? imgPath;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -55,10 +55,21 @@ class _MyHomePageState extends State<MyHomePage> {
     _classifier = ClassifierQuant();
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  Future getTakenPicture() async{
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
 
-    setState(() {
+    setState(() { //actually processes image
+      _image = File(pickedFile!.path);
+      _imageWidget = Image.file(_image!);
+
+      _predict();
+    });
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery); //get an image from gallery
+
+    setState(() { //actually processes image
       _image = File(pickedFile!.path);
       _imageWidget = Image.file(_image!);
 
@@ -77,6 +88,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    if (_image == null && widget.imgPath != null)
+      {
+        //if you went to this page from the take picture screen,
+        //then the imgPath field should not be null.
+        //thus, process that image at the path.
+
+        getTakenPicture();
+      }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('TfLite Flutter Helper',
@@ -112,21 +133,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 : '',
             style: TextStyle(fontSize: 16),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(onPressed: getImage, child: Icon(Icons.photo_library)),
+              ElevatedButton(onPressed: getTakenPicture, child: Icon(Icons.add_a_photo))
+            ],
+          )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          // Obtain a list of the available cameras on the device.
-          final cameras = await availableCameras();
-          // Get a specific camera from the list of available cameras.
-          final firstCamera = cameras.first;
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
-          );
-        },
-        tooltip: 'Take Picture',
-        child: Icon(Icons.add_a_photo),
       ),
     );
   }
