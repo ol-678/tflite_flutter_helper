@@ -24,7 +24,7 @@ dependencies:
   logger: ^1.0.0
   camera:
   path:
-
+  shared_preferences: ^2.0.7
   path_provider:
   tflite_flutter_helper:
     path:
@@ -55,7 +55,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/labels.txt
+    - newmodel.tflite
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

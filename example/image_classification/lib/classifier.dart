@@ -21,7 +21,7 @@ abstract class Classifier {
   late TfLiteType _inputType;
   late TfLiteType _outputType;
 
-  final String _labelsFileName = 'assets/labels_5.txt';
+  final String _labelsFileName = 'assets/labels.txt';
 
   final int _labelsLength = 1001;
 

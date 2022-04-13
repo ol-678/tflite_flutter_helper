@@ -8,7 +8,6 @@ import 'package:imageclassification/classifier_quant.dart';
 import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
-import 'package:imageclassification/Picture Screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -66,6 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future getTakenPicture() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = File(pickedFile!.path);
+      _imageWidget = Image.file(_image!);
+
+      _predict();
+    });
+  }
+
   void _predict() async {
     img.Image imageInput = img.decodeImage(_image!.readAsBytesSync())!;
     var pred = _classifier.predict(imageInput);
@@ -112,21 +122,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 : '',
             style: TextStyle(fontSize: 16),
           ),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ElevatedButton(onPressed: getImage,
+            child: Icon(Icons.photo_library),),
+            ElevatedButton(onPressed: getTakenPicture,
+              child: Icon(Icons.add_a_photo),),
+          ]
+
+        )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          // Obtain a list of the available cameras on the device.
-          final cameras = await availableCameras();
-          // Get a specific camera from the list of available cameras.
-          final firstCamera = cameras.first;
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TakePictureScreen(camera: firstCamera)),
-          );
-        },
-        tooltip: 'Take Picture',
-        child: Icon(Icons.add_a_photo),
       ),
     );
   }

@@ -32,8 +32,7 @@ class _SplashPageState extends State<SplashPage> {
             children: [
               Image.asset("assets/applogo.png"),
               SizedBox(height: 25),
-              Text("Welcome to Health App"),
-              Text("Copyright @ Olivia, 2022")
+              Text("Welcome to the Health App"),
             ],
           ),
         )
