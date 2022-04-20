@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imageclassification/meal_generation.dart';
 class MealSelection extends StatefulWidget {
   const MealSelection({Key? key}) : super(key: key);
 
@@ -24,7 +25,10 @@ class _MealSelectionState extends State<MealSelection> {
               itemCount: entries.length,
               itemBuilder: (BuildContext context, int index) {
                 return ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MealGeneration()));},
                   child: Container(
                     height: 50,
                     color: Colors.amber[colorCodes[index]],

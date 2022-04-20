@@ -8,6 +8,7 @@ import 'package:imageclassification/classifier_quant.dart';
 import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
+import 'Food_info.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,6 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late Classifier _classifier;
+
+  FoodInfo? foodInfo;
 
   var logger = Logger();
 
@@ -82,8 +85,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       this.category = pred;
+      foodInfo = getCorrespondingFood();
     });
   }
+  FoodInfo getCorrespondingFood () {
+    String classification = category!.label;
+    switch (classification) {
+      case "0 #1- Vegetables (lettuce)":
+        return FoodInfo("lettuce", 5, 10);
+      case "1 #2- Meat (Chicken)":
+        return FoodInfo("Chicken", 335, 115);
+      case "2 #3- Dairy (milk)":
+        return FoodInfo("milk", 124, 116);
+      case "3 #4- Grains (bread) ":
+        return FoodInfo("bread", 79, 147);
+      case "4 #5- Desserts (Ice cream)":
+        return FoodInfo("Ice cream", 137, 53);
+      default:
+        return FoodInfo("null", 0, 0);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 36,
           ),
           Text(
-            category != null ? category!.label : '',
+            category != null ? foodInfo!.name: '',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
           SizedBox(
@@ -122,8 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 : '',
             style: TextStyle(fontSize: 16),
           ),
-
-        Row(
+          
+          Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton(onPressed: getImage,
@@ -138,3 +160,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
