@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imageclassification/dashboard_screen.dart';
 import 'dart:math';
-
 import 'package:imageclassification/main.dart';
-
 
 class SplashPage extends StatefulWidget {
   @override
@@ -31,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("assets/applogo.png"),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               Text("Welcome to the Health App"),
             ],
           ),

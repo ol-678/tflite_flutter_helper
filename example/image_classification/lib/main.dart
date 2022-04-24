@@ -9,6 +9,7 @@ import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 import 'Food_info.dart';
+import 'meal_generation.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,6 +24,31 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
     );
+  }
+}
+
+class _MealGenerationState extends State<MealGeneration> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: Text('Meal Generation'),),
+      body: Center(
+          child: Container (
+
+          )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MealGeneration()),
+          );
+        },
+      ),
+    );
+
   }
 }
 
@@ -92,20 +118,19 @@ class _MyHomePageState extends State<MyHomePage> {
     String classification = category!.label;
     switch (classification) {
       case "0 #1- Vegetables (lettuce)":
-        return FoodInfo("lettuce", 5, 10);
+        return FoodInfo("lettuce", 5, 10, 0.3, 0, 1);
       case "1 #2- Meat (Chicken)":
-        return FoodInfo("Chicken", 335, 115);
+        return FoodInfo("Chicken", 335, 115, 0, 123, 0);
       case "2 #3- Dairy (milk)":
-        return FoodInfo("milk", 124, 116);
+        return FoodInfo("milk", 124, 116, 12, 20, 12);
       case "3 #4- Grains (bread) ":
-        return FoodInfo("bread", 79, 147);
+        return FoodInfo("bread", 79, 147, 1.5, 0, 15);
       case "4 #5- Desserts (Ice cream)":
-        return FoodInfo("Ice cream", 137, 53);
+        return FoodInfo("Ice cream", 137, 53, 14, 29, 16);
       default:
-        return FoodInfo("null", 0, 0);
+        return FoodInfo("null", 0, 0, 0, 0, 0);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Center(
             child: _image == null
-                ? Text('No image selected.')
+                ? Text('No image selected')
                 : Container(
               constraints: BoxConstraints(
                   maxHeight: MediaQuery.of(context).size.height / 2),
