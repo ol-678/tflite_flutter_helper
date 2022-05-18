@@ -26,6 +26,7 @@ class _MealSelectionState extends State<MealSelection> {
               itemBuilder: (BuildContext context, int index) {
                 return ElevatedButton(
                   onPressed: () {
+                    RecordedData.typeOfMeal = entries[index];
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MealGeneration()));},

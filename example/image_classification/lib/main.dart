@@ -169,7 +169,42 @@ class _MyHomePageState extends State<MyHomePage> {
                 : '',
             style: TextStyle(fontSize: 16),
           ),
-          
+
+          Text(
+            category != null
+                ? 'Calories: ' + foodInfo!.calories.toString()
+                : '',
+            style: TextStyle(fontSize: 16),
+          ),
+
+          Text(
+            category != null
+                ? 'Sodium: ' + foodInfo!.sodium.toString() + ' miligrams'
+                : '',
+            style: TextStyle(fontSize: 16),
+          ),
+
+          Text(
+            category != null
+                ? 'Sugar: ' + foodInfo!.sugar.toString() + ' grams'
+                : '',
+            style: TextStyle(fontSize: 16),
+          ),
+
+          Text(
+            category != null
+                ? 'Cholesterol: ' + foodInfo!.cholesterol.toString() + ' miligrams'
+                : '',
+            style: TextStyle(fontSize: 16),
+          ),
+
+          Text(
+            category != null
+                ? 'Calories: ' + foodInfo!.carbohydrates.toString() + ' grams'
+                : '',
+            style: TextStyle(fontSize: 16),
+          ),
+
           Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -182,6 +217,18 @@ class _MyHomePageState extends State<MyHomePage> {
         )
         ],
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (foodInfo != null) {
+            RecordedData.foods.add(foodInfo!);
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MealGeneration()));
+          }
+          },
+        child: Icon(Icons.check)
+      )
     );
   }
 }
