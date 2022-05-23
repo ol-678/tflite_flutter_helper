@@ -36,7 +36,6 @@ class _MealGenerationState extends State<MealGeneration> {
         title: Text('Meal Generation'),),
       body: Center(
           child: Container (
-
           )
       ),
       floatingActionButton: FloatingActionButton(
