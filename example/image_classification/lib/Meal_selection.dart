@@ -33,7 +33,8 @@ class _MealSelectionState extends State<MealSelection> {
                   child: Container(
                     height: 50,
                     color: Colors.amber[colorCodes[index]],
-                    child: Center(child: Text('Entry ${entries[index]}')),
+                    child: Center(child: Text('Entry ${entries[index]}',
+                    style: TextStyle(color: Colors.black))),
                   ),
                 );
               }
