@@ -48,7 +48,6 @@ class _MealGenerationState extends State<MealGeneration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
       title: Text(RecordedData.typeOfMeal),),
       body: Center(
@@ -65,7 +64,7 @@ class _MealGenerationState extends State<MealGeneration> {
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.indigo[700],
+                      color: Colors.purpleAccent[700],
                     ))
                 );
               },

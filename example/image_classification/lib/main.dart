@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('TfLite Flutter Helper',
-            style: TextStyle(color: Colors.white)),
+            style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight:FontWeight.bold)),
       ),
       body: Column(
         children: <Widget>[

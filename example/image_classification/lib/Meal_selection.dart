@@ -15,7 +15,7 @@ class _MealSelectionState extends State<MealSelection> {
     return Scaffold(
         appBar: AppBar(
         title: Text('Select your meal',
-        style: TextStyle(color: Colors.white)),
+        style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
     ),
     body:
         Center(
@@ -32,9 +32,9 @@ class _MealSelectionState extends State<MealSelection> {
                         MaterialPageRoute(builder: (context) => MealGeneration()));},
                   child: Container(
                     height: 50,
-                    color: Colors.amber[colorCodes[index]],
+                    color: Colors.orange[colorCodes[index]],
                     child: Center(child: Text('Entry ${entries[index]}',
-                    style: TextStyle(color: Colors.black))),
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
                   ),
                 );
               }

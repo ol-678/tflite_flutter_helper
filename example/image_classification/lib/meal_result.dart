@@ -9,6 +9,6 @@ class MealResult extends StatefulWidget {
 class _MealResultState extends State<MealResult> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp();
   }
 }
