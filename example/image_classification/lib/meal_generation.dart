@@ -42,7 +42,7 @@ class _MealGenerationState extends State<MealGeneration> {
     await _saveName();
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MealResult()),
+      MaterialPageRoute(builder: (context) => MealResult(mealID: generateMealName(),)),
     );
   }
   @override
@@ -73,29 +73,35 @@ class _MealGenerationState extends State<MealGeneration> {
         ),
         ),
 
-        floatingActionButton: Positioned(
-          right: 10,
-          bottom: 20,
-          child: Column(
-            children: [
-              FloatingActionButton(
-                heroTag: null,
-                onPressed: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                  );
-                },
-                tooltip: 'Pick Image',
-                  child: Icon(Icons.add_a_photo),
+        floatingActionButton: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned(
+            right: 10,
+            bottom: 20,
+            child: Column(
+              children: [
+                FloatingActionButton(
+                  heroTag: null,
+                  onPressed: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                    );
+                  },
+                  tooltip: 'Pick Image',
+                    child: Icon(Icons.add_a_photo),
+                  ),
+                if (RecordedData.foods.length > 0)
+                FloatingActionButton(
+                  heroTag: null,
+                  onPressed: _saveMeal,
+                  child: Icon(Icons.check),
                 ),
-              FloatingActionButton(
-                heroTag: null,
-                onPressed: _saveMeal,
-                child: Icon(Icons.add_a_photo),
-              ),
-            ],
+              ],
+            ),
           ),
+         ],
         ),
     );
 
