@@ -1,5 +1,10 @@
-0 #1- Vegetables (lettuce)
-1 #2- Meat (Chicken)
-2 #3- Dairy (milk) 
-3 #4- Grains (bread) 
-4 #5- Desserts (Ice cream)
+0 Apples
+1 Bread
+2 Chocolate
+3 Coffee
+4 Ice Cream
+5 Lettuce
+6 Milk
+7 Oranges
+8 Seafood
+9 Cooked Chicken
