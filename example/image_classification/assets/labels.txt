@@ -1,10 +1,10 @@
-0 Apples
+0 Apple
 1 Bread
 2 Chocolate
 3 Coffee
-4 Ice Cream
-5 Lettuce
-6 Milk
-7 Oranges
-8 Seafood
-9 Cooked Chicken
+4 Cooked Chicken
+5 Ice Cream
+6 Lettuce
+7 Milk
+8 Orange
+9 Seafood

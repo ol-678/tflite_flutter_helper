@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Food_info.dart';
+import 'food_dictionary.dart';
 
 class MealResult extends StatefulWidget {
   final String mealID;
@@ -41,18 +42,28 @@ class _MealResultState extends State<MealResult> {
   }
   FoodInfo getCorrespondingFood (String foodName) {
     switch (foodName) {
-      case "lettuce":
-        return FoodInfo("lettuce", 5, 10, 0.3, 0, 1);
-      case "Chicken":
-        return FoodInfo("Chicken", 335, 115, 0, 123, 0);
-      case "milk":
-        return FoodInfo("milk", 124, 116, 12, 20, 12);
-      case "bread":
-        return FoodInfo("bread", 79, 147, 1.5, 0, 15);
-      case "Ice cream":
-        return FoodInfo("Ice cream", 137, 53, 14, 29, 16);
+      case "Apple":
+        return Food_Dictionary.AllFoods["Apple"]!;
+      case "Bread":
+        return Food_Dictionary.AllFoods['Bread']!;
+      case "Chocolate":
+        return Food_Dictionary.AllFoods['Chocolate']!;
+      case "Coffee":
+        return Food_Dictionary.AllFoods['Coffee']!;
+      case "Cooked Chicken":
+        return Food_Dictionary.AllFoods['Cooked Chicken']!;
+      case "Ice Cream":
+        return Food_Dictionary.AllFoods['Ice Cream']!;
+      case "Lettuce":
+        return Food_Dictionary.AllFoods['Lettuce']!;
+      case "Milk":
+        return Food_Dictionary.AllFoods['Milk']!;
+      case "Orange":
+        return Food_Dictionary.AllFoods['Orange']!;
+      case "Seafood":
+        return Food_Dictionary.AllFoods['Seafood']!;
       default:
-        return FoodInfo("null", 0, 0, 0, 0, 0);
+        return FoodInfo("null", 0, 0, 0, 0, 0);;
     }
   }
   @override

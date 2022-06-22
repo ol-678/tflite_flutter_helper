@@ -9,6 +9,8 @@ import 'package:imageclassification/splash_screen.dart';
 import 'package:logger/logger.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 import 'Food_info.dart';
+import 'dashboard_screen.dart';
+import 'food_dictionary.dart';
 import 'meal_generation.dart';
 
 void main() => runApp(MyApp());
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: SplashPage(),
+      home: DashboardPage(),
     );
   }
 }
@@ -116,16 +118,26 @@ class _MyHomePageState extends State<MyHomePage> {
   FoodInfo getCorrespondingFood () {
     String classification = category!.label;
     switch (classification) {
-      case "0 #1- Vegetables (lettuce)":
-        return FoodInfo("lettuce", 5, 10, 0.3, 0, 1);
-      case "1 #2- Meat (Chicken)":
-        return FoodInfo("Chicken", 335, 115, 0, 123, 0);
-      case "2 #3- Dairy (milk)":
-        return FoodInfo("milk", 124, 116, 12, 20, 12);
-      case "3 #4- Grains (bread) ":
-        return FoodInfo("bread", 79, 147, 1.5, 0, 15);
-      case "4 #5- Desserts (Ice cream)":
-        return FoodInfo("Ice cream", 137, 53, 14, 29, 16);
+      case "0 Apple":
+        return Food_Dictionary.AllFoods["Apple"]!;
+      case "1 Bread":
+        return Food_Dictionary.AllFoods['Bread']!;
+      case "2 Chocolate":
+        return Food_Dictionary.AllFoods['Chocolate']!;
+      case "3 Coffee":
+        return Food_Dictionary.AllFoods['Coffee']!;
+      case "4 Cooked Chicken":
+        return Food_Dictionary.AllFoods['Cooked Chicken']!;
+      case "5 Ice Cream":
+        return Food_Dictionary.AllFoods['Ice Cream']!;
+      case "6 Lettuce":
+        return Food_Dictionary.AllFoods['Lettuce']!;
+      case "7 Milk":
+        return Food_Dictionary.AllFoods['Milk']!;
+      case "8 Orange":
+        return Food_Dictionary.AllFoods['Orange']!;
+      case "9 Seafood":
+        return Food_Dictionary.AllFoods['Seafood']!;
       default:
         return FoodInfo("null", 0, 0, 0, 0, 0);
     }
