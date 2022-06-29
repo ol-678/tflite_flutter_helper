@@ -11,11 +11,33 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
+  final List<String> entries = <String>['A', 'B', 'C', 'D', 'E'];
+  final List<int> colorCodes = <int>[600, 500, 200, 400, 300];
   String? _savedName;
+  int lifetimeCal = 0;
+  int lifetimeCarbs = 0;
+  double lifetimeSugar = 0;
+  int lifetimeSodium = 0;
+  int lifetimeCholesterol = 0;
+
   final TextEditingController _nameController = TextEditingController();
 
+  Future<void> getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    int mealsEaten = prefs.getInt("meals")!;
+
+    lifetimeCal = prefs.getInt("lifeTimeCalories")!;
+    lifetimeCarbs = prefs.getInt("lifeTimeCarbs")!;
+    lifetimeSugar = prefs.getDouble("lifeTimeSugar")!;
+    lifetimeSodium = prefs.getInt("lifeTimeSodium")!;
+    lifetimeCholesterol = prefs.getInt("lifeTimeCholesterol")!;
+
+    double avgCalPerMeal = lifetimeCal / mealsEaten;
+    double avgCarbsPerMeal = lifetimeCarbs / mealsEaten;
+    double avgSugarPerMeal = lifetimeSugar / mealsEaten;
+    double avgSodiumPerMeal = lifetimeSodium/ mealsEaten;
+    double avgCholesterolPerMeal = lifetimeCholesterol / mealsEaten;
+  }
   // Retrieve the saved name if it exists
   @override
   void initState() {
@@ -122,7 +144,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
 
               Expanded(
-                flex: 45,
+                flex: 90,
                 child: Column(
                   children: [
                     SizedBox(height: 25),
@@ -140,28 +162,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         }
                     ),
                   ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 66,
-                child: Column(
-                  children: [
-                    SizedBox(height: 25),
-                    Text("Recent"),
-                    Expanded(
-                      child: ListView.builder(
-                          padding: const EdgeInsets.all(8),
-                          itemCount: entries.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              height: 50,
-                              color: Colors.amber[colorCodes[index]],
-                              child: Center(child: Text('Entry ${entries[index]}')),
-                            );
-                          }
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -22,11 +22,89 @@ class _MealResultState extends State<MealResult> {
     }
     return counter;
   }
+
+  int getCarbsTotal()
+  {
+    int counter = 0;
+    for(FoodInfo f in mealInfo){
+      counter+=f.carbohydrates;
+    }
+    return counter;
+  }
+
+  double getSugarTotal()
+  {
+    double counter = 0;
+    for(FoodInfo f in mealInfo){
+      counter+=f.sugar;
+    }
+    return counter;
+  }
+
+  int getSodiumTotal()
+  {
+    int counter = 0;
+    for(FoodInfo f in mealInfo){
+      counter+=f.sodium;
+    }
+    return counter;
+  }
+
+  int getCholesterolTotal()
+  {
+    int counter = 0;
+    for(FoodInfo f in mealInfo){
+      counter+=f.cholesterol;
+    }
+    return counter;
+  }
+  Future <void> SaveData ()async {
+    // Obtain shared preferences.
+    final prefs = await SharedPreferences.getInstance();
+    //get the amount of meals eaten
+    int mealsEaten = 0;
+    mealsEaten = prefs.getInt("meals")!;
+
+    //increase by one (include this meal)
+    mealsEaten += 1;
+
+    //average calories
+    int totalCal = getCalorieTotal();
+    int lifetimeCal = 0;
+    lifetimeCal = prefs.getInt("lifetimeCalories")!;
+    await prefs.setInt('lifetimeCalories', lifetimeCal + totalCal);
+
+    //average carbohydrates
+    int totalCarbs = getCarbsTotal();
+    int lifetimeCarbs = 0;
+    lifetimeCarbs = prefs.getInt("lifetimeCarbohydrates")!;
+    await prefs.setInt('lifetimeCarbohydrates', lifetimeCarbs + totalCarbs);
+
+    //average sugar
+    double totalSugar = getSugarTotal();
+    double lifetimeSugar = 0;
+    lifetimeSugar = prefs.getDouble("lifetimeSugar")!;
+    await prefs.setDouble('lifetimeSugar', lifetimeSugar + totalSugar);
+
+    //average sodium
+    int totalSodium = getSodiumTotal();
+    int lifetimeSodium = 0;
+    lifetimeSodium = prefs.getInt("lifetimeSodium")!;
+    await prefs.setInt('lifetimeSodium', lifetimeSodium + totalSodium);
+
+    //average cholesterol
+    int totalCholesterol = getCholesterolTotal();
+    int lifetimeCholesterol = 0;
+    lifetimeCholesterol = prefs.getInt("lifetimeCholesterol")!;
+    await prefs.setInt('lifetimeCholesterol', lifetimeCholesterol + totalCholesterol);
+  }
+
   // Retrieve the saved name if it exists
   @override
   void initState() {
     super.initState();
     _retreiveFoodInfo(); //set meals list
+    SaveData();
   }
   Future<void> _retreiveFoodInfo() async {
     final prefs = await SharedPreferences.getInstance();
