@@ -1,5 +1,8 @@
 import 'Food_info.dart';
 
+//Food_Dictionary contains a static dictionary that several screens use to
+//turn a basic string into usable information about food.
+//Food information is hard-coded into this application.
 class Food_Dictionary
 {
   static Map < String, FoodInfo > AllFoods =

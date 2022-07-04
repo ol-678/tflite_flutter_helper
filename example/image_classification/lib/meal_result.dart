@@ -4,6 +4,7 @@ import 'Food_info.dart';
 import 'food_dictionary.dart';
 
 class MealResult extends StatefulWidget {
+  //the name of the desired meal to look up in SharedPreferences.
   final String mealID;
   const MealResult({Key? key, required this.mealID}) : super(key: key);
 
@@ -12,8 +13,13 @@ class MealResult extends StatefulWidget {
 }
 
 class _MealResultState extends State<MealResult> {
+  //A list of food names grabbed from SharedPreferences.
   List<String> loadedMealNames = [];
+
+  //The list of food names, now formatted as their corresponding FoodInfos.
   List<FoodInfo> mealInfo = [];
+
+  //adds up all calories from the foods in mealInfo
   int getCalorieTotal()
   {
     int counter = 0;
@@ -23,6 +29,7 @@ class _MealResultState extends State<MealResult> {
     return counter;
   }
 
+  //adds up all carbs from the foods in mealInfo
   int getCarbsTotal()
   {
     int counter = 0;
@@ -32,6 +39,7 @@ class _MealResultState extends State<MealResult> {
     return counter;
   }
 
+  //adds up all sugar from the foods in mealInfo
   double getSugarTotal()
   {
     double counter = 0;
@@ -41,6 +49,7 @@ class _MealResultState extends State<MealResult> {
     return counter;
   }
 
+  //adds up all sodium from the foods in mealInfo
   int getSodiumTotal()
   {
     int counter = 0;
@@ -50,6 +59,7 @@ class _MealResultState extends State<MealResult> {
     return counter;
   }
 
+  //adds up all cholesterol from the foods in mealInfo
   int getCholesterolTotal()
   {
     int counter = 0;
@@ -58,6 +68,9 @@ class _MealResultState extends State<MealResult> {
     }
     return counter;
   }
+
+  //Updates averages within SharedPreferences
+  //These are shown on the dashboard page
   Future <void> SaveData ()async {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();

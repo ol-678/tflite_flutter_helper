@@ -10,6 +10,7 @@ class MealSelection extends StatefulWidget {
 class _MealSelectionState extends State<MealSelection> {
   final List<String> entries = <String>['Breakfast', 'Lunch', 'Dinner'];
   final List<int> colorCodes = <int>[600, 500, 400];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
