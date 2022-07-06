@@ -65,7 +65,12 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future<void> getData() async {
     final prefs = await SharedPreferences.getInstance();
-    int mealsEaten = prefs.getInt("meals")!;
+    int mealsEaten = 0;
+    int? meals = prefs.getInt("meals");
+    if (meals != null)
+    {
+      mealsEaten = meals;
+    }
 
     await getLifeTimeCal();
     await getLifeTimeCarbs();
@@ -81,11 +86,17 @@ class _DashboardPageState extends State<DashboardPage> {
         averageSodium = lifetimeSodium/ mealsEaten;
         averageCholesterol = lifetimeCholesterol / mealsEaten;
       }
-    entries.add(averageCal.toString());
-    entries.add(averageCarbs.toString());
-    entries.add(averageSugar.toString());
-    entries.add(averageSodium.toString());
-    entries.add(averageCholesterol.toString());
+    setState(() {
+      entries.add(averageCal.toString()+ 'calories per meal');
+      entries.add(averageCarbs.toString() + 'carbohydrates per meal');
+      entries.add(averageSugar.toString() + 'sugar per meal');
+      entries.add(averageSodium.toString() + "sodium per meal");
+      entries.add(averageCholesterol.toString() + 'cholesterol per meal');
+    });
+  }
+  _DashboardPageState()
+  {
+    getData();
   }
   // Retrieve the saved name if it exists
   @override
@@ -206,7 +217,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           return Container(
                             height: 50,
                             color: Colors.amber[colorCodes[index]],
-                            child: Center(child: Text('Entry ${entries[index]}')),
+                            child: Center(child: Text( ${entries[index]}')),
                           );
                         }
                     ),
