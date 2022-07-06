@@ -11,7 +11,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final List<String> entries = <String>['A', 'B', 'C', 'D', 'E'];
+  final List<String> entries = [];
   final List<int> colorCodes = <int>[600, 500, 200, 400, 300];
   String? _savedName;
   int lifetimeCal = 0;
@@ -20,23 +20,72 @@ class _DashboardPageState extends State<DashboardPage> {
   int lifetimeSodium = 0;
   int lifetimeCholesterol = 0;
 
+  double averageCal = 0;
+  double averageCarbs = 0;
+  double averageSugar = 0;
+  double averageSodium = 0;
+  double averageCholesterol = 0;
+
   final TextEditingController _nameController = TextEditingController();
+  getLifeTimeCal() async {
+    final prefs = await SharedPreferences.getInstance();
+    int? n = prefs.getInt("lifeTimeCalories");
+    if (n != null){
+      lifetimeCal = n;
+    }
+  }
+  getLifeTimeCarbs() async {
+    final prefs = await SharedPreferences.getInstance();
+    int? n = prefs.getInt("lifeTimeCarbs");
+    if (n != null){
+      lifetimeCarbs = n;
+    }
+  }
+  getLifeTimeSugar() async {
+    final prefs = await SharedPreferences.getInstance();
+    double? n = prefs.getDouble("lifeTimeSugar");
+    if (n != null){
+      lifetimeSugar = n;
+    }
+  }
+  getLifeTimeSodium() async {
+    final prefs = await SharedPreferences.getInstance();
+    int? n = prefs.getInt("lifeTimeSodium");
+    if (n != null){
+      lifetimeSodium = n;
+    }
+  }
+  getLifeTimeCholesterol() async {
+    final prefs = await SharedPreferences.getInstance();
+    int? n = prefs.getInt("lifeTimeCholesterol");
+    if (n != null){
+      lifetimeCholesterol = n;
+    }
+  }
 
   Future<void> getData() async {
     final prefs = await SharedPreferences.getInstance();
     int mealsEaten = prefs.getInt("meals")!;
 
-    lifetimeCal = prefs.getInt("lifeTimeCalories")!;
-    lifetimeCarbs = prefs.getInt("lifeTimeCarbs")!;
-    lifetimeSugar = prefs.getDouble("lifeTimeSugar")!;
-    lifetimeSodium = prefs.getInt("lifeTimeSodium")!;
-    lifetimeCholesterol = prefs.getInt("lifeTimeCholesterol")!;
+    await getLifeTimeCal();
+    await getLifeTimeCarbs();
+    await getLifeTimeSugar();
+    await getLifeTimeSodium();
+    await getLifeTimeCholesterol();
 
-    double avgCalPerMeal = lifetimeCal / mealsEaten;
-    double avgCarbsPerMeal = lifetimeCarbs / mealsEaten;
-    double avgSugarPerMeal = lifetimeSugar / mealsEaten;
-    double avgSodiumPerMeal = lifetimeSodium/ mealsEaten;
-    double avgCholesterolPerMeal = lifetimeCholesterol / mealsEaten;
+    if (mealsEaten > 0)
+      {
+        averageCal = lifetimeCal / mealsEaten;
+        averageCarbs = lifetimeCarbs / mealsEaten;
+        averageSugar = lifetimeSugar / mealsEaten;
+        averageSodium = lifetimeSodium/ mealsEaten;
+        averageCholesterol = lifetimeCholesterol / mealsEaten;
+      }
+    entries.add(averageCal.toString());
+    entries.add(averageCarbs.toString());
+    entries.add(averageSugar.toString());
+    entries.add(averageSodium.toString());
+    entries.add(averageCholesterol.toString());
   }
   // Retrieve the saved name if it exists
   @override
