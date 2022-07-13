@@ -87,11 +87,11 @@ class _DashboardPageState extends State<DashboardPage> {
         averageCholesterol = lifetimeCholesterol / mealsEaten;
       }
     setState(() {
-      entries.add(averageCal.toString()+ 'calories per meal');
-      entries.add(averageCarbs.toString() + 'carbohydrates per meal');
-      entries.add(averageSugar.toString() + 'sugar per meal');
-      entries.add(averageSodium.toString() + "sodium per meal");
-      entries.add(averageCholesterol.toString() + 'cholesterol per meal');
+      entries.add(averageCal.toString()+  ' calories per meal');
+      entries.add(averageCarbs.toString() +  ' carbohydrates per meal');
+      entries.add(averageSugar.toString() +  ' sugar per meal');
+      entries.add(averageSodium.toString() +  " sodium per meal");
+      entries.add(averageCholesterol.toString() +  ' cholesterol per meal');
     });
   }
   _DashboardPageState()
@@ -217,7 +217,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           return Container(
                             height: 50,
                             color: Colors.amber[colorCodes[index]],
-                            child: Center(child: Text( ${entries[index]}')),
+                            child: Center(child: Text(entries[index])),
                           );
                         }
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Food_info.dart';
+import 'dashboard_screen.dart';
 import 'food_dictionary.dart';
 
 class MealResult extends StatefulWidget {
@@ -76,40 +77,59 @@ class _MealResultState extends State<MealResult> {
     final prefs = await SharedPreferences.getInstance();
     //get the amount of meals eaten
     int mealsEaten = 0;
-    mealsEaten = prefs.getInt("meals")!;
+    int? grabbedMeals = prefs.getInt("meals");
+    if (grabbedMeals != null)
+    {
+      mealsEaten = grabbedMeals;
+    }
 
     //increase by one (include this meal)
     mealsEaten += 1;
 
     //average calories
     int totalCal = getCalorieTotal();
-    int lifetimeCal = 0;
-    lifetimeCal = prefs.getInt("lifetimeCalories")!;
-    await prefs.setInt('lifetimeCalories', lifetimeCal + totalCal);
+    int? lifetimeCal = prefs.getInt("lifetimeCalories");
+    if (lifetimeCal != null)
+    {
+      totalCal += lifetimeCal;
+    }
+    await prefs.setInt("lifetimeCalories", totalCal);
 
     //average carbohydrates
     int totalCarbs = getCarbsTotal();
-    int lifetimeCarbs = 0;
-    lifetimeCarbs = prefs.getInt("lifetimeCarbohydrates")!;
-    await prefs.setInt('lifetimeCarbohydrates', lifetimeCarbs + totalCarbs);
+    int? lifetimeCarbs = prefs.getInt("lifetimeCarbohydrates");
+    if (lifetimeCarbs != null)
+    {
+      totalCarbs += lifetimeCarbs;
+    }
+    await prefs.setInt("lifetimeCarbohydrates", totalCarbs);
 
     //average sugar
     double totalSugar = getSugarTotal();
-    double lifetimeSugar = 0;
-    lifetimeSugar = prefs.getDouble("lifetimeSugar")!;
-    await prefs.setDouble('lifetimeSugar', lifetimeSugar + totalSugar);
+    double? lifetimeSugar = prefs.getDouble("lifetimeSugar");
+    if (lifetimeSugar != null)
+    {
+      totalSugar += lifetimeSugar;
+    }
+    await prefs.setDouble("lifetimeSugar", totalSugar);
 
     //average sodium
     int totalSodium = getSodiumTotal();
-    int lifetimeSodium = 0;
-    lifetimeSodium = prefs.getInt("lifetimeSodium")!;
-    await prefs.setInt('lifetimeSodium', lifetimeSodium + totalSodium);
+    int? lifetimeSodium = prefs.getInt("lifetimeSodium");
+    if (lifetimeSodium != null)
+    {
+      totalSodium += lifetimeSodium;
+    }
+    await prefs.setInt("lifetimeSodium", totalSodium);
 
     //average cholesterol
     int totalCholesterol = getCholesterolTotal();
-    int lifetimeCholesterol = 0;
-    lifetimeCholesterol = prefs.getInt("lifetimeCholesterol")!;
-    await prefs.setInt('lifetimeCholesterol', lifetimeCholesterol + totalCholesterol);
+    int? lifetimeCholesterol = prefs.getInt("lifetimeCholesterol");
+    if (lifetimeCholesterol != null)
+    {
+      totalCholesterol += lifetimeCholesterol;
+    }
+    await prefs.setInt("lifetimeCholesterol", totalCholesterol);
   }
 
   // Retrieve the saved name if it exists
@@ -192,6 +212,17 @@ class _MealResultState extends State<MealResult> {
           ]
         )
       ),
+      floatingActionButton: FloatingActionButton (
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DashboardPage()),
+          );
+        },
+        child: Icon (
+          Icons.house
+        )
+      )
     );
 
   }
