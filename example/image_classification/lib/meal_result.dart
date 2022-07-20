@@ -85,6 +85,7 @@ class _MealResultState extends State<MealResult> {
 
     //increase by one (include this meal)
     mealsEaten += 1;
+    await prefs.setInt("meals", mealsEaten);
 
     //average calories
     int totalCal = getCalorieTotal();
@@ -93,6 +94,7 @@ class _MealResultState extends State<MealResult> {
     {
       totalCal += lifetimeCal;
     }
+    print(totalCal);
     await prefs.setInt("lifetimeCalories", totalCal);
 
     //average carbohydrates
@@ -102,6 +104,7 @@ class _MealResultState extends State<MealResult> {
     {
       totalCarbs += lifetimeCarbs;
     }
+    print(totalCarbs);
     await prefs.setInt("lifetimeCarbohydrates", totalCarbs);
 
     //average sugar
@@ -111,6 +114,7 @@ class _MealResultState extends State<MealResult> {
     {
       totalSugar += lifetimeSugar;
     }
+    print(totalSugar);
     await prefs.setDouble("lifetimeSugar", totalSugar);
 
     //average sodium
@@ -120,6 +124,7 @@ class _MealResultState extends State<MealResult> {
     {
       totalSodium += lifetimeSodium;
     }
+    print(totalSodium);
     await prefs.setInt("lifetimeSodium", totalSodium);
 
     //average cholesterol
@@ -129,6 +134,7 @@ class _MealResultState extends State<MealResult> {
     {
       totalCholesterol += lifetimeCholesterol;
     }
+    print(totalCholesterol);
     await prefs.setInt("lifetimeCholesterol", totalCholesterol);
   }
 
@@ -136,10 +142,10 @@ class _MealResultState extends State<MealResult> {
   @override
   void initState() {
     super.initState();
-    _retreiveFoodInfo(); //set meals list
+    _retrieveFoodInfo(); //set meals list
     SaveData();
   }
-  Future<void> _retreiveFoodInfo() async {
+  Future<void> _retrieveFoodInfo() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey(widget.mealID)){
       setState(() {

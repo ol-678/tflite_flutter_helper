@@ -29,35 +29,36 @@ class _DashboardPageState extends State<DashboardPage> {
   final TextEditingController _nameController = TextEditingController();
   getLifeTimeCal() async {
     final prefs = await SharedPreferences.getInstance();
-    int? n = prefs.getInt("lifeTimeCalories");
+    int? n = prefs.getInt("lifetimeCalories");
     if (n != null){
       lifetimeCal = n;
+      print("grabbed lifetimecal");
     }
   }
   getLifeTimeCarbs() async {
     final prefs = await SharedPreferences.getInstance();
-    int? n = prefs.getInt("lifeTimeCarbs");
+    int? n = prefs.getInt("lifetimeCarbs");
     if (n != null){
       lifetimeCarbs = n;
     }
   }
   getLifeTimeSugar() async {
     final prefs = await SharedPreferences.getInstance();
-    double? n = prefs.getDouble("lifeTimeSugar");
+    double? n = prefs.getDouble("lifetimeSugar");
     if (n != null){
       lifetimeSugar = n;
     }
   }
   getLifeTimeSodium() async {
     final prefs = await SharedPreferences.getInstance();
-    int? n = prefs.getInt("lifeTimeSodium");
+    int? n = prefs.getInt("lifetimeSodium");
     if (n != null){
       lifetimeSodium = n;
     }
   }
   getLifeTimeCholesterol() async {
     final prefs = await SharedPreferences.getInstance();
-    int? n = prefs.getInt("lifeTimeCholesterol");
+    int? n = prefs.getInt("lifetimeCholesterol");
     if (n != null){
       lifetimeCholesterol = n;
     }
@@ -77,6 +78,13 @@ class _DashboardPageState extends State<DashboardPage> {
     await getLifeTimeSugar();
     await getLifeTimeSodium();
     await getLifeTimeCholesterol();
+
+    print(lifetimeCal);
+    print(lifetimeCarbs);
+    print(lifetimeSugar);
+    print(lifetimeSodium);
+    print(lifetimeCholesterol);
+    print(mealsEaten);
 
     if (mealsEaten > 0)
       {
