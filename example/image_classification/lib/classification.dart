@@ -47,27 +47,35 @@ class _ClassificationState extends State<Classification> {
 
   Future getImage() async {
     //requests an image from the phone's image gallery
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.getImage(source: ImageSource.gallery).
+    then((value) {
+      if (value != null)
+        {
+          setState(() {
+            _image = File(value!.path);
+            _imageWidget = Image.file(_image!);
 
-    setState(() {
-      _image = File(pickedFile!.path);
-      _imageWidget = Image.file(_image!);
-
-      //ask classifier to predict image
-      _predict();
+            //ask classifier to predict image
+            _predict();
+          });
+        }
     });
   }
 
   Future getTakenPicture() async {
     //requests a photo from the phone's camera
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedFile = await picker.getImage(source: ImageSource.camera).
+    then((value) {
+      if (value != null)
+      {
+        setState(() {
+          _image = File(value!.path);
+          _imageWidget = Image.file(_image!);
 
-    setState(() {
-      _image = File(pickedFile!.path);
-      _imageWidget = Image.file(_image!);
-
-      //ask classifider to predict image
-      _predict();
+          //ask classifier to predict image
+          _predict();
+        });
+      }
     });
   }
 
