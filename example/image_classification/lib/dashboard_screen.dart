@@ -183,36 +183,30 @@ class _DashboardPageState extends State<DashboardPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              Expanded(
-                flex: 66,
-                child: Column(
-                  children: [
-                    Text("Profile"),
-                    Container(
-                    height: 150,
-                    width: 150,
-                    margin: EdgeInsets.all(15),
-                    child:
-                    CircleAvatar(
-                      backgroundImage: NetworkImage("https://cdn-icons-png.flaticon.com/512/3011/3011270.png")
-                    ),
-                    ),
-                    Text(
-                      "Welcome, "+ _savedName! + "!",
-                          style: TextStyle(
-                        fontSize: 20
-                    ),
-                    ),
-                    Text(
-                      "You have been doing great! Keep up the good diet!",
+              Column(
+                children: [
+                  Container(
+                  height: 150,
+                  width: 150,
+                  margin: EdgeInsets.all(15),
+                  child:
+                  CircleAvatar(
+                    backgroundImage: NetworkImage("https://cdn-icons-png.flaticon.com/512/3011/3011270.png")
+                  ),
+                  ),
+                  Text(
+                    "Welcome, "+ _savedName! + "!",
+                        style: TextStyle(
+                      fontSize: 20
+                  ),
+                  ),
+                  Text(
+                    "You have been doing great! Keep up the good diet!",
           ),
-                    ElevatedButton(onPressed: _clearName, child: const Text("reset name"))
-                      ],
-                ),
+                  ElevatedButton(onPressed: _clearName, child: const Text("reset name"))
+                    ],
               ),
-
               Expanded(
-                flex: 90,
                 child: Column(
                   children: [
                     SizedBox(height: 25),

@@ -7,7 +7,7 @@
     </queries>
     <application
         android:name="${applicationName}"
-        android:label="imageclassification"
+        android:label="SmartCarbs"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
