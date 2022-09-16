@@ -16,6 +16,7 @@ class Food_Dictionary
     "Chocolate": FoodInfo("Chocolate", 155, 7, 14, 2, 17),
     "Fish": FoodInfo("Fish", 366, 109, 0, 112, 0),
     "Orange": FoodInfo("Orange", 45, 0, 9, 0, 11),
-    "Coffee": FoodInfo("Coffee", 1, 5, 0, 0, 0)
+    "Coffee": FoodInfo("Coffee", 1, 5, 0, 0, 0),
+    "Seafood": FoodInfo("Seafood", 110, 130, 0, 43, 1)
   };
 }

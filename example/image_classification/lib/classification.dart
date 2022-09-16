@@ -195,7 +195,7 @@ class _ClassificationState extends State<Classification> {
 
             Text(
               category != null
-                  ? 'Calories: ' + foodInfo!.carbohydrates.toString() + ' grams'
+                  ? 'Carbohydrates: ' + foodInfo!.carbohydrates.toString() + ' grams'
                   : '',
               style: TextStyle(fontSize: 16),
             ),
